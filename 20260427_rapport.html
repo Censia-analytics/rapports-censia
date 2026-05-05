@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<title>Rapport GEO — Bacciami Bois-Colombes</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#F8FAFF;color:#1E293B}
+.header{background:#0D1B4B;color:white;padding:40px 48px}
+.header-top{display:flex;justify-content:space-between;margin-bottom:8px}
+.logo{font-size:13px;font-weight:600;letter-spacing:3px;color:#93C5FD}
+.date{font-size:13px;color:#94A3B8}
+.header h1{font-size:32px;font-weight:700;margin-bottom:6px}
+.header .sub{font-size:15px;color:#CADCFC}
+.container{max-width:900px;margin:0 auto;padding:40px 24px}
+.score-section{background:white;border-radius:16px;padding:36px;margin-bottom:24px;border:0.5px solid #E2E8F0;display:flex;align-items:center;gap:40px}
+.score-circle{width:120px;height:120px;border-radius:50%;background:#F59E0B15;border:4px solid #F59E0B;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.score-number{font-size:42px;font-weight:700;color:#F59E0B;line-height:1}
+.score-label{font-size:11px;color:#94A3B8;margin-top:2px}
+.score-details h2{font-size:20px;font-weight:600;margin-bottom:16px}
+.synthese{font-size:14px;color:#475569;line-height:1.7;padding:16px;background:#F8FAFF;border-radius:8px;border-left:3px solid #3B82F6}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.metric-card{background:white;border-radius:12px;padding:20px;border:0.5px solid #E2E8F0;text-align:center}
+.metric-value{font-size:28px;font-weight:700;color:#0D1B4B;margin-bottom:4px}
+.metric-label{font-size:12px;color:#94A3B8}
+.section{background:white;border-radius:16px;padding:32px;margin-bottom:24px;border:0.5px solid #E2E8F0}
+.section h2{font-size:16px;font-weight:600;margin-bottom:20px;padding-bottom:12px;border-bottom:0.5px solid #E2E8F0;color:#0D1B4B;letter-spacing:1px}
+.section .subtitle{font-size:13px;color:#64748B;margin-bottom:16px;font-style:italic}
+.cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.cat-card{padding:16px;border-radius:10px;border:0.5px solid #E2E8F0}
+.cat-name{font-size:11px;font-weight:600;letter-spacing:1px;color:#94A3B8;margin-bottom:8px}
+.cat-taux{font-size:24px;font-weight:700;margin-bottom:2px}
+.cat-rang{font-size:12px;color:#94A3B8}
+.bar{height:6px;background:#F1F5F9;border-radius:3px;margin-top:10px}
+.bar-fill{height:100%;border-radius:3px}
+.attr-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.attr-label{font-size:13px;font-weight:500;color:#1E293B;width:160px;flex-shrink:0}
+.attr-bar-wrap{flex:1;height:8px;background:#F1F5F9;border-radius:4px}
+.attr-bar{height:100%;border-radius:4px}
+.attr-count{font-size:12px;color:#94A3B8;width:30px;text-align:right}
+.absent-pill{display:inline-flex;align-items:center;gap:6px;background:#FEF2F2;color:#DC2626;padding:8px 14px;border-radius:8px;font-size:13px;margin:4px;border:0.5px solid #FECACA}
+.absent-pill span{color:#94A3B8;font-size:12px}
+.raison-item{font-size:13px;color:#475569;padding:10px 14px;background:#F8FAFF;border-radius:8px;margin-bottom:8px;border-left:3px solid #F59E0B;line-height:1.5}
+.conc-card{padding:14px 16px;border:0.5px solid #E2E8F0;border-radius:10px;margin-bottom:8px}
+.conc-name{font-size:14px;font-weight:600;color:#1E293B;margin-bottom:4px}
+.conc-count{font-size:12px;color:#94A3B8;font-weight:400;margin-left:8px}
+.conc-attrs{font-size:12px;color:#64748B}
+.llm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.llm-card{padding:16px;border-radius:10px;border:0.5px solid #E2E8F0;text-align:center}
+.llm-na{background:#F8FAFF}
+.llm-name{font-size:12px;font-weight:600;margin-bottom:8px}
+.llm-score{font-size:28px;font-weight:700;margin-bottom:2px}
+.llm-score-na{font-size:13px;color:#CBD5E1;margin-top:8px}
+.llm-label{font-size:11px;color:#94A3B8}
+.quick-wins{background:#EEF2FF;border-radius:12px;padding:20px;margin-bottom:24px}
+.quick-wins h3{font-size:13px;font-weight:600;color:#4338CA;margin-bottom:12px;letter-spacing:1px}
+.qw-item{display:flex;gap:10px;margin-bottom:10px;font-size:13px;color:#3730A3;line-height:1.5}
+.qw-arrow{color:#6366F1;font-weight:700;flex-shrink:0}
+.reco-card{border:0.5px solid #E2E8F0;border-radius:12px;padding:20px;margin-bottom:12px}
+.reco-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.reco-num{width:28px;height:28px;border-radius:50%;background:#0D1B4B;color:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.reco-title{font-size:15px;font-weight:600;flex:1}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px}
+.reco-desc{font-size:13px;color:#475569;line-height:1.6;margin-bottom:12px}
+.reco-actions{list-style:none}
+.reco-actions li{font-size:13px;color:#334155;padding:6px 0;border-bottom:0.5px solid #F1F5F9;padding-left:16px;position:relative;line-height:1.5}
+.reco-actions li:before{content:'•';position:absolute;left:0;color:#3B82F6}
+.reco-actions li:last-child{border-bottom:none}
+.footer{text-align:center;padding:32px;color:#94A3B8;font-size:12px}
+</style></head><body>
+
+<div class="header">
+  <div class="header-top">
+    <span class="logo">CENSIA — GEO MONITORING</span>
+    <span class="date">Rapport du 27/04/2026</span>
+  </div>
+  <h1>Bacciami Bois-Colombes</h1>
+  <div class="sub">Pizzeria / restaurant italien · Centre-ville, Bois-Colombes · LLM : gemini-2.5-flash</div>
+</div>
+
+<div class="container">
+
+  <!-- SCORE -->
+  <div class="score-section">
+    <div class="score-circle">
+      <div class="score-number">57</div>
+      <div class="score-label">/ 100</div>
+    </div>
+    <div class="score-details">
+      <h2>Score de visibilité IA</h2>
+      <div class="synthese">Bacciami Bois-Colombes jouit d'une excellente réputation, se classant #1 lorsqu'il est cité, mais souffre d'un faible taux de citation global (40%), particulièrement sur les requêtes de découverte et locales. L'IA peine à associer la marque à des attributs clés comme son authenticité, ses pizzas artisanales, son ambiance chaleureuse et sa localisation centrale, ce qui limite significativement sa visibilité et son attractivité potentielle.</div>
+    </div>
+  </div>
+
+  <!-- MÉTRIQUES -->
+  <div class="metrics-grid">
+    <div class="metric-card"><div class="metric-value">40%</div><div class="metric-label">Taux de citation</div></div>
+    <div class="metric-card"><div class="metric-value">#1.0</div><div class="metric-label">Rang moyen</div></div>
+    <div class="metric-card"><div class="metric-value">13.4%</div><div class="metric-label">Part of voice</div></div>
+    <div class="metric-card"><div class="metric-value">4.2/5</div><div class="metric-label">Sentiment</div></div>
+  </div>
+
+  <!-- PAR LLM -->
+  <div class="section">
+    <h2>VISIBILITÉ PAR LLM</h2>
+    <div class="subtitle">Taux de citation sur chaque assistant IA testé</div>
+    <div class="llm-grid"><div class="llm-card">
+          <div class="llm-name" style="color:#4285F4">Gemini</div>
+          <div class="llm-score" style="color:#4285F4">40%</div>
+          <div class="llm-label">taux de citation</div>
+          <div class="bar" style="margin-top:8px"><div class="bar-fill" style="width:40%;background:#4285F4"></div></div>
+        </div><div class="llm-card llm-na">
+          <div class="llm-name" style="color:#10A37F">ChatGPT</div>
+          <div class="llm-score-na">Non testé</div>
+        </div><div class="llm-card llm-na">
+          <div class="llm-name" style="color:#C96442">Claude</div>
+          <div class="llm-score-na">Non testé</div>
+        </div><div class="llm-card llm-na">
+          <div class="llm-name" style="color:#5436DA">Perplexity</div>
+          <div class="llm-score-na">Non testé</div>
+        </div></div>
+  </div>
+
+  <!-- PAR CATÉGORIE -->
+  <div class="section">
+    <h2>RÉSULTATS PAR CATÉGORIE</h2>
+    <div class="cat-grid"><div class="cat-card">
+      <div class="cat-name">DECOUVERTE</div>
+      <div class="cat-taux" style="color:#3B82F6">20%</div>
+      <div class="cat-rang">Rang #1.0</div>
+      <div class="bar"><div class="bar-fill" style="width:20%;background:#3B82F6"></div></div>
+    </div><div class="cat-card">
+      <div class="cat-name">LOCALE</div>
+      <div class="cat-taux" style="color:#10B981">30%</div>
+      <div class="cat-rang">Non citée</div>
+      <div class="bar"><div class="bar-fill" style="width:30%;background:#10B981"></div></div>
+    </div><div class="cat-card">
+      <div class="cat-name">COMPARATIVE</div>
+      <div class="cat-taux" style="color:#8B5CF6">50%</div>
+      <div class="cat-rang">Rang #1.0</div>
+      <div class="bar"><div class="bar-fill" style="width:50%;background:#8B5CF6"></div></div>
+    </div><div class="cat-card">
+      <div class="cat-name">SITUATIONNELLE</div>
+      <div class="cat-taux" style="color:#F59E0B">60%</div>
+      <div class="cat-rang">Rang #1.0</div>
+      <div class="bar"><div class="bar-fill" style="width:60%;background:#F59E0B"></div></div>
+    </div></div>
+  </div>
+
+  <!-- CE QUE L'IA DIT DE VOUS -->
+  <div class="section">
+    <h2>CE QUE L'IA DIT DE VOUS</h2>
+    <div class="subtitle">Attributs les plus fréquemment associés à Bacciami Bois-Colombes dans les réponses</div>
+    <div class="attr-row">
+      <div class="attr-label">Bois-Colombes</div>
+      <div class="attr-bar-wrap"><div class="attr-bar" style="width:100%;background:#3B82F6"></div></div>
+      <div class="attr-count">9×</div>
+    </div><div class="attr-row">
+      <div class="attr-label">pizzeria</div>
+      <div class="attr-bar-wrap"><div class="attr-bar" style="width:56%;background:#3B82F6"></div></div>
+      <div class="attr-count">5×</div>
+    </div><div class="attr-row">
+      <div class="attr-label">authentique</div>
+      <div class="attr-bar-wrap"><div class="attr-bar" style="width:33%;background:#3B82F6"></div></div>
+      <div class="attr-count">3×</div>
+    </div><div class="attr-row">
+      <div class="attr-label">restaurant</div>
+      <div class="attr-bar-wrap"><div class="attr-bar" style="width:22%;background:#3B82F6"></div></div>
+      <div class="attr-count">2×</div>
+    </div><div class="attr-row">
+      <div class="attr-label">pizza artisanale</div>
+      <div class="attr-bar-wrap"><div class="attr-bar" style="width:22%;background:#3B82F6"></div></div>
+      <div class="attr-count">2×</div>
+    </div><div class="attr-row">
+      <div class="attr-label">restaurant italien</div>
+      <div class="attr-bar-wrap"><div class="attr-bar" style="width:22%;background:#3B82F6"></div></div>
+      <div class="attr-count">2×</div>
+    </div><div class="attr-row">
+      <div class="attr-label">ambiance moderne</div>
+      <div class="attr-bar-wrap"><div class="attr-bar" style="width:22%;background:#3B82F6"></div></div>
+      <div class="attr-count">2×</div>
+    </div><div class="attr-row">
+      <div class="attr-label">four à bois</div>
+      <div class="attr-bar-wrap"><div class="attr-bar" style="width:22%;background:#3B82F6"></div></div>
+      <div class="attr-count">2×</div>
+    </div>
+  </div>
+
+  <!-- CE QUE L'IA NE DIT JAMAIS -->
+  <div class="section">
+    <h2>CE QUE L'IA NE DIT JAMAIS DE VOUS</h2>
+    <div class="subtitle">Attributs de votre brief qui n'apparaissent jamais dans les réponses IA</div>
+    <div><div class="absent-pill">⚠️ Localisation centre-ville <span>jamais mentionné</span></div><div class="absent-pill">⚠️ Ambiance chaleureuse <span>jamais mentionné</span></div><div class="absent-pill">⚠️ authentique <span>jamais mentionné</span></div><div class="absent-pill">⚠️ pizza artisanale <span>jamais mentionné</span></div><div class="absent-pill">⚠️ restaurant italien <span>jamais mentionné</span></div><div class="absent-pill">⚠️ Pizzeria italienne authentique <span>jamais mentionné</span></div></div>
+  </div>
+
+  <!-- POURQUOI VOS CONCURRENTS VOUS DEVANCENT -->
+  <div class="section">
+    <h2>POURQUOI VOS CONCURRENTS VOUS DEVANCENT</h2>
+    <div class="subtitle">Ce que l'IA met en avant chez eux à votre place</div>
+    <div class="conc-card">
+      <div class="conc-name">Scala <span class="conc-count">4×</span></div>
+      <div class="conc-attrs">espace suffisant pour une famille · pâtes · cadre agréable · pizzas classiques</div>
+    </div><div class="conc-card">
+      <div class="conc-name">Trattoria <span class="conc-count">3×</span></div>
+      <div class="conc-attrs">garnitures généreuses · proche gare · ambiance conviviale · risottos</div>
+    </div><div class="conc-card">
+      <div class="conc-name">Squadra <span class="conc-count">3×</span></div>
+      <div class="conc-attrs">accessible · côté authentique · ambiance conviviale · pizzeria</div>
+    </div><div class="conc-card">
+      <div class="conc-name">Pizzetta <span class="conc-count">2×</span></div>
+      <div class="conc-attrs">Pâte fine et croustillante · Service attentif et efficace · ambiance conviviale · Autres spécialités italiennes</div>
+    </div><div class="conc-card">
+      <div class="conc-name">Peppe Pizzeria <span class="conc-count">1×</span></div>
+      <div class="conc-attrs">référence · Champion du Monde de la Pizza en 2019 et 2021 · produits frais et d'excellente qualité · tradition napolitaine</div>
+    </div>
+    <div class="section" style="background:#FFFBEB;border-color:#FDE68A;margin-top:16px"><h2 style="color:#92400E">POURQUOI VOUS N'ÊTES PAS CITÉ</h2><div class="raison-item">→ La marque n'est pas parmi les pizzerias recommandées par l'IA pour cette localité.</div><div class="raison-item">→ La marque n'est pas considérée comme une des meilleures options pour la pizza authentique napolitaine par l'IA, ou n'est pas répertoriée dans ses références pour la région, malgré la recherche incluant Bois-Colombes.</div><div class="raison-item">→ L'IA a fait une recommandation unique et n'a pas cité d'autres établissements.</div><div class="raison-item">→ L'IA a privilégié d'autres établissements qu'elle juge plus pertinents pour l'ambiance chaleureuse et la requête de l'utilisateur.</div></div>
+  </div>
+
+  <!-- QUICK WINS -->
+  <div class="quick-wins">
+    <h3>⚡ QUICK WINS — À FAIRE CETTE SEMAINE</h3>
+    <div class="qw-item"><span class="qw-arrow">→</span><span>Compléter intégralement la fiche Google My Business avec des photos de haute qualité et des descriptions riches en mots-clés pertinents ('pizza artisanale', 'four à bois', 'authentique', 'restaurant italien', 'ambiance chaleureuse', 'centre-ville Bois-Colombes').</span></div><div class="qw-item"><span class="qw-arrow">→</span><span>Lancer une campagne de sollicitation d'avis clients sur Google, en incitant les clients satisfaits à mentionner spécifiquement l'authenticité des pizzas, la qualité des ingrédients et l'ambiance du restaurant.</span></div><div class="qw-item"><span class="qw-arrow">→</span><span>Créer au moins 5 posts par semaine sur Instagram et Facebook, avec des visuels attrayants du four à bois en action, des pizzas fumantes, de l'intérieur du restaurant et des légendes incluant les attributs clés (authenticité, artisanat, ambiance, centre-ville).</span></div>
+  </div>
+
+  <!-- PLAN D'ACTION -->
+  <div class="section">
+    <h2>PLAN D'ACTION GEO</h2>
+    <div class="reco-card">
+      <div class="reco-header">
+        <div class="reco-num">1</div>
+        <div class="reco-title">Optimiser la visibilité locale et la découvrabilité</div>
+        <div class="badges">
+          <span class="badge" style="background:#10B98120;color:#10B981">FORT</span>
+          <span class="badge" style="background:#F59E0B20;color:#F59E0B">Effort MOYEN</span>
+          <span class="badge" style="background:#F1F5F9;color:#64748B">court terme (1 mois)</span>
+        </div>
+      </div>
+      <div class="reco-desc">Améliorer la présence de Bacciami sur les plateformes locales pour que l'IA le recommande plus fréquemment, en particulier pour les requêtes de découverte et locales où le taux de citation est le plus faible (20% et 30%).</div>
+      <ul class="reco-actions"><li>Auditer et optimiser la fiche Google My Business (GMB) : compléter toutes les sections (horaires, adresse précise, catégories 'Pizzeria', 'Restaurant italien'), ajouter un texte de description riche en mots-clés ('pizzeria', 'italien', 'Bois-Colombes', 'pizza artisanale', 'four à bois', 'centre-ville').</li><li>Ajouter des attributs pertinents sur GMB (ex: 'Ambiance chaleureuse', 'Idéal pour les groupes', 'Terrasse', 'Livraison').</li><li>Vérifier et mettre à jour la cohérence des informations sur les principaux annuaires en ligne (Pages Jaunes, Yelp, Tripadvisor, Foursquare) et plateformes de livraison (Uber Eats, Deliveroo).</li></ul>
+    </div><div class="reco-card">
+      <div class="reco-header">
+        <div class="reco-num">1</div>
+        <div class="reco-title">Renforcer l'identité 'authentique & artisanale'</div>
+        <div class="badges">
+          <span class="badge" style="background:#10B98120;color:#10B981">FORT</span>
+          <span class="badge" style="background:#F59E0B20;color:#F59E0B">Effort MOYEN</span>
+          <span class="badge" style="background:#F1F5F9;color:#64748B">moyen terme (3 mois)</span>
+        </div>
+      </div>
+      <div class="reco-desc">L'IA ne parvient pas à associer suffisamment Bacciami aux concepts de 'pizzeria italienne authentique', 'pizza artisanale' ou 'four à bois'. Il est crucial de marteler ces messages pour influencer la perception de l'IA.</div>
+      <ul class="reco-actions"><li>Créer et publier régulièrement du contenu visuel (photos et vidéos de haute qualité) sur GMB, le site web et les réseaux sociaux, mettant en avant le four à bois, la préparation des pizzas, les ingrédients frais et l'équipe.</li><li>Mettre à jour les textes du site web et de la fiche GMB pour inclure des phrases clés soulignant l'origine des produits, le savoir-faire ('maison', 'artisanale'), et l'héritage italien ('véritable pizzeria italienne authentique').</li><li>Intégrer ces mots-clés ('authentique', 'artisanale', 'four à bois', 'italienne') dans les descriptions de menu et les réponses aux avis clients.</li></ul>
+    </div><div class="reco-card">
+      <div class="reco-header">
+        <div class="reco-num">2</div>
+        <div class="reco-title">Mettre en avant l'ambiance et la localisation centrale</div>
+        <div class="badges">
+          <span class="badge" style="background:#F59E0B20;color:#F59E0B">MOYEN</span>
+          <span class="badge" style="background:#10B98120;color:#10B981">Effort FAIBLE</span>
+          <span class="badge" style="background:#F1F5F9;color:#64748B">court terme (1 mois)</span>
+        </div>
+      </div>
+      <div class="reco-desc">L'ambiance chaleureuse et la localisation centre-ville sont des attributs non mentionnés par l'IA mais très recherchés par les utilisateurs. Il faut les intégrer activement dans toute la communication.</div>
+      <ul class="reco-actions"><li>Ajouter des photos et vidéos de l'intérieur du restaurant, soulignant une ambiance conviviale et chaleureuse, sur GMB et les réseaux sociaux.</li><li>Mettre à jour les descriptions sur GMB et le site web avec des phrases telles que 'Idéalement situé en plein centre-ville de Bois-Colombes' et 'Profitez de notre ambiance chaleureuse et conviviale'.</li><li>Créer des posts sur les réseaux sociaux invitant les clients à découvrir l'emplacement privilégié et l'atmosphère accueillante du restaurant.</li></ul>
+    </div><div class="reco-card">
+      <div class="reco-header">
+        <div class="reco-num">3</div>
+        <div class="reco-title">Développer la stratégie de réputation en ligne</div>
+        <div class="badges">
+          <span class="badge" style="background:#F59E0B20;color:#F59E0B">MOYEN</span>
+          <span class="badge" style="background:#F59E0B20;color:#F59E0B">Effort MOYEN</span>
+          <span class="badge" style="background:#F1F5F9;color:#64748B">moyen terme (3 mois)</span>
+        </div>
+      </div>
+      <div class="reco-desc">Capitaliser sur le rang #1 lorsque Bacciami est cité en encourageant un flux continu d'avis positifs, qui renforcent la crédibilité auprès de l'IA et des futurs clients.</div>
+      <ul class="reco-actions"><li>Mettre en place un système simple pour solliciter des avis clients post-visite (QR code sur table/ticket, lien direct via email/SMS), en suggérant de mentionner les points forts (authenticité, ambiance, qualité des pizzas).</li><li>Répondre systématiquement et de manière personnalisée à tous les avis (positifs et négatifs) sur GMB et Tripadvisor, en réintégrant les mots-clés stratégiques.</li><li>Analyser les avis des concurrents cités plus fréquemment (Scala, Trattoria) pour identifier les attentes des clients et ajuster la communication de Bacciami.</li></ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Rapport généré par Censia · GEO Monitoring · 27/04/2026<br>
+  40 questions testées · gemini-2.5-flash
+</div>
+</body></html>
